@@ -42,28 +42,28 @@ with torch.no_grad():
 
 # Save results as png images
 save_as_images(output,'./Image/BigGANoutput')
-save_as_images(output,'./MiDaS-master/input/MidasInput')
+save_as_images(output,'./MiDaS/input/MidasInput')
 
 
 # resize the Image to 160*256
-img = cv2.imread('./MiDaS-master/input/MidasInput_0.png')
+img = cv2.imread('./MiDaS/input/MidasInput_0.png')
 print(img.shape)
 height, width = img.shape[:2]
 size = (256,160)
 img = cv2.resize(img, size, interpolation = cv2.INTER_AREA)
 print(img.shape)
-cv2.imwrite('./MiDaS-master/input/MidasInput_0.png', img, [int(cv2.IMWRITE_JPEG_QUALITY),95])
+cv2.imwrite('./MiDaS/input/MidasInput_0.png', img, [int(cv2.IMWRITE_JPEG_QUALITY),95])
 
 #run Midas
-os.system('python ./MiDaS-master/run.py')
+os.system('python ./MiDaS/run.py')
 
 #normalize Image
 
 # 读取RGB图片path
-input_data_train = './MiDaS-master/input/MidasInput_0.png'
+input_data_train = './MiDaS/input/MidasInput_0.png'
 input_data_train=cv2.imread(input_data_train,cv2.IMREAD_ANYCOLOR)
 # 读取视差图path
-input_data_disp = './MiDaS-master/output/MidasInput_0.png'
+input_data_disp = './MiDaS/output/MidasInput_0.png'
 input_data_disp=cv2.imread(input_data_disp,cv2.IMREAD_ANYCOLOR)
 
 rgb = np.array(input_data_train)
